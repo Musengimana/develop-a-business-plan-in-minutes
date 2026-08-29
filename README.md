@@ -1,5 +1,7 @@
 # Use this business plan skill to develop a business plan for your new idea or business in minutes
 
+![A business plan in minutes. Researched, lender-ready, numbers that check themselves.](docs/banner.png)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Works with](https://img.shields.io/badge/works%20with-Claude%20·%20Codex%20·%20any%20LLM%20agent-blue)](#works-with-any-llm)
 [![Skill format](https://img.shields.io/badge/format-SKILL.md%20open%20standard-orange)](#install-it)
