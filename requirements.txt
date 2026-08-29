@@ -1,0 +1,7 @@
+# Python dependencies for the skill's scripts
+openpyxl>=3.1
+lxml>=4.9
+
+# Also required (not pip-installable): LibreOffice (the `soffice` binary),
+# used by the workbook engine to recalculate formulas headlessly.
+# Word/PDF rendering during quality checks also uses LibreOffice.
