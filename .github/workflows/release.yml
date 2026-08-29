@@ -1,0 +1,27 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build installers
+        run: |
+          mkdir -p dist
+          zip -r dist/build-client-business-plans.zip build-client-business-plans -x "*__pycache__*" -x "*.pyc"
+          cp dist/build-client-business-plans.zip dist/build-client-business-plans.skill
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            dist/build-client-business-plans.zip \
+            dist/build-client-business-plans.skill \
+            --title "Business plan skill $GITHUB_REF_NAME" \
+            --notes "Download build-client-business-plans.zip and upload it to Claude under Settings > Capabilities (Skills), or unzip it into your agent's skills folder. The .skill file is the same archive for tools that install .skill packages. See the README for per-assistant instructions."

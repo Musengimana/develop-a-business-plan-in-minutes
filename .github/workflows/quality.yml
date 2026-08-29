@@ -1,0 +1,22 @@
+name: quality
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Compile all scripts
+        run: python -m compileall build-client-business-plans/scripts
+      - name: Verify workbook formula integrity
+        run: >
+          python build-client-business-plans/scripts/verify_formula_integrity.py
+          build-client-business-plans/assets/financial-forecast-template.xlsx
